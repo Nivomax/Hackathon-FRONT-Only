@@ -175,6 +175,82 @@ const archivesModal = document.getElementById("archivesModal");
 const archivesContent = document.getElementById("archivesContent");
 
 /* =========================
+   API Helper Functions
+========================= */
+
+async function createPlayerAPI(name, studentNum) {
+  try {
+    const result = await PokerAPI.createPlayer(name, studentNum || null);
+    if (result && result.id) {
+      players.push(result);
+      return result;
+    }
+    return null;
+  } catch (error) {
+    console.error('Erreur createPlayerAPI:', error);
+    return null;
+  }
+}
+
+async function createSessionAPI(date, status = 'created') {
+  try {
+    const result = await PokerAPI.createSession(date, status);
+    if (result && result.id) {
+      sessions.push(result);
+      return result;
+    }
+    return null;
+  } catch (error) {
+    console.error('Erreur createSessionAPI:', error);
+    return null;
+  }
+}
+
+async function addPlayerToSessionAPI(sessionId, playerId, arrivedAt) {
+  try {
+    const result = await PokerAPI.addPlayerToSession(sessionId, playerId, arrivedAt);
+    return result;
+  } catch (error) {
+    console.error('Erreur addPlayerToSessionAPI:', error);
+    return null;
+  }
+}
+
+async function updateParticipationAPI(participationId, updates) {
+  try {
+    const result = await PokerAPI.updateParticipation(participationId, updates);
+    return result;
+  } catch (error) {
+    console.error('Erreur updateParticipationAPI:', error);
+    return null;
+  }
+}
+
+async function updateSessionStatusAPI(sessionId, status) {
+  try {
+    const result = await PokerAPI.updateSessionStatus(sessionId, status);
+    return result;
+  } catch (error) {
+    console.error('Erreur updateSessionStatusAPI:', error);
+    return null;
+  }
+}
+
+async function createTournamentAPI(name, winnerId, date) {
+  try {
+    const result = await PokerAPI.createTournament(name, winnerId, date);
+    if (result && result.id) {
+      tournaments.push(result);
+      return result;
+    }
+    return null;
+  } catch (error) {
+    console.error('Erreur createTournamentAPI:', error);
+    return null;
+  }
+}
+
+/* =========================
    Ranking (cumul)
 ========================= */
 
