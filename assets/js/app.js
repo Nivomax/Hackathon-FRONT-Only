@@ -216,9 +216,9 @@ async function addPlayerToSessionAPI(sessionId, playerId, arrivedAt) {
   }
 }
 
-async function updateParticipationAPI(participationId, updates) {
+async function updateParticipationAPI(participationId, eliminatedAt, position, placementPoints) {
   try {
-    const result = await PokerAPI.updateParticipation(participationId, updates);
+    const result = await PokerAPI.updateParticipation(participationId, eliminatedAt, position, placementPoints);
     return result;
   } catch (error) {
     console.error('Erreur updateParticipationAPI:', error);
@@ -232,6 +232,17 @@ async function updateSessionStatusAPI(sessionId, status) {
     return result;
   } catch (error) {
     console.error('Erreur updateSessionStatusAPI:', error);
+    return null;
+  }
+}
+
+async function closeSessionAPI(sessionId) {
+  try {
+    // Clôturer la séance en changeant son statut
+    const result = await PokerAPI.updateSessionStatus(sessionId, 'finished');
+    return result;
+  } catch (error) {
+    console.error('Erreur closeSessionAPI:', error);
     return null;
   }
 }
