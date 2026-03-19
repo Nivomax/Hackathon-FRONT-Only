@@ -4,7 +4,7 @@
    Toutes les requêtes vers le backend PHP
 ========================= */
 
-const API_BASE = 'http://localhost/form%20poker/api';
+const API_BASE = 'https://hackathon-api.great-site.net/api';
 
 class PokerAPI {
   /* =========================
