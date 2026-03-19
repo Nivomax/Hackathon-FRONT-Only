@@ -4,7 +4,7 @@
    Toutes les requêtes vers le backend PHP
 ========================= */
 
-const API_BASE = 'https://9cf98780-5058-479f-93ef-90a266bd5967-00-2keerh55e0lmn.picard.replit.dev';
+const API_BASE = 'http://localhost/form%20poker/api';
 
 class PokerAPI {
   /* =========================
